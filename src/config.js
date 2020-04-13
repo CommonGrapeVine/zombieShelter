@@ -1,9 +1,10 @@
 import Phaser, { Physics } from "phaser";
 import { mainScene } from "./scene/main.scene";
+import { isTSConstructSignatureDeclaration } from "@babel/types";
+import { gameSize } from "./globals";
 const config = {
     type: Phaser.CANVAS,
-    width: 16 * 15,
-    height: 16 * 10,
+    ...gameSize,
     parent: "game",
     zoom: 4,
     physics: {
@@ -11,7 +12,12 @@ const config = {
         matter: {
             gravity: {
                 y: 1
-            }
+            },
+            setbound: {
+                bottom: true,
+            },
+            debug: true,
+            
         }
     },
     scene: mainScene
