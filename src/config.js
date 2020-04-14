@@ -1,7 +1,13 @@
-import Phaser, { Physics } from "phaser";
-import { mainScene } from "./scene/main.scene";
-import { isTSConstructSignatureDeclaration } from "@babel/types";
+// External imports
+import Phaser, { GameObjects } from "phaser";
+
+// Local imports
 import { gameSize } from "./globals";
+
+import * as scenes from "./scene";
+
+console.log(scenes);
+
 const config = {
     type: Phaser.CANVAS,
     ...gameSize,
@@ -17,9 +23,9 @@ const config = {
                 bottom: true,
             },
             debug: true,
-            
+
         }
     },
-    scene: mainScene
+    scene: Object.keys(scenes).map(sceneKey => scenes[sceneKey])
 };
 export default config;
