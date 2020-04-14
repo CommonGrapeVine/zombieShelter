@@ -1,26 +1,21 @@
 import Phaser from "phaser"
-import { gameSize, controlKeys } from "../globals";
-
-import { ControlService } from "../services/control.service";
+import { gameSize } from "../globals";
+import { Player } from "../models/player.model";
 class MainScene extends Phaser.Scene {
 
     player;
-    controlsService;
 
     preload() {
-        this.load.image("player", "assets/player.png")
+        this.load.image("player", "assets/player.png");
     }
 
     create() {
-        this.controlsService = new ControlService(this, controlKeys);
         this.matter.world.setBounds(0, 0, gameSize.width, gameSize.height);
-        this.player = this.matter.add.sprite(0, 0, "player");
-        this.player.setFixedRotation(0);
+        this.player = new Player(this, { x: 0, y: 0 }, 'player');
     }
 
     update() {
-        this.controlsService.isKeyDown('left') && this.player.setVelocityX(-1);
-        this.controlsService.isKeyDown('right') && this.player.setVelocityX(1);
+        this.player.update();
     }
 }
 export const mainScene = new MainScene("mainScene");
