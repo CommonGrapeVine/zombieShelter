@@ -20,8 +20,8 @@ export class Player extends MovableEntity {
     }
 
     update = (time, delta) => {
-        this.controlsService.isKeyDown('left') && this.moveLeft();
-        this.controlsService.isKeyDown('right') && this.moveRight();
+        this.controlsService.isKeyDown('left') && !this.sensors.left.touching && this.moveLeft();
+        this.controlsService.isKeyDown('right') && !this.sensors.right.touching && this.moveRight();
         this.controlsService.isKeyDown('up') && this.jump(time);
 
         if (!this.controlsService.isKeyDown('left') && !this.controlsService.isKeyDown('right')) this.stop();

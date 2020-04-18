@@ -15,7 +15,7 @@ const config = {
         matter: {
             gravity: { y: 1 },
             setbound: { bottom: true, },
-            // debug: true
+            debug: true
         }
     },
     plugins: {
