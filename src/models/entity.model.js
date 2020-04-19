@@ -42,14 +42,18 @@ export class Entity {
         sprite.setExistingBody(compoundBody);
 
         Object.keys(this.sensors).forEach(key => {
+            this.sensors[key].touching = 0;
+        })
+
+        Object.keys(this.sensors).forEach(key => {
             this.scene.matterCollision.addOnCollideStart({
                 objectA: this.sensors[key],
-                callback: () => { this.sensors[key].touching = true }
+                callback: () => { this.sensors[key].touching++ }
             });
 
             this.scene.matterCollision.addOnCollideEnd({
                 objectA: this.sensors[key],
-                callback: () => { this.sensors[key].touching = false }
+                callback: () => { this.sensors[key].touching-- }
             });
         })
 
