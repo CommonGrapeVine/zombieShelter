@@ -41,6 +41,6 @@ export class Player extends MovableEntity {
     stop = () => { this.sprite.setVelocityX(0); }
 
     canJump = (time) => {
-        return (this.currentJump < this.maxJumps || this.sensors.bottom.touching) && this.lastJump != this.controlsService.controls.up.timeDown
+        return (this.currentJump < this.maxJumps || this.sensors.bottom.touching > 0) && this.lastJump != this.controlsService.controls.up.timeDown
     };
 }
