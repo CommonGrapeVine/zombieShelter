@@ -17,7 +17,10 @@ class MainScene extends Phaser.Scene {
     create() {
         // this.matter.world.setBounds(0, 0, gameSize.width, gameSize.height);
         const map = this.createMap(this);
-        this.player = new Player(this, { x: 50, y: 50 }, 'player', 1);
+        this.player = new Player(this, { x: 200, y: 200 }, 'player', 1);
+        this.matter.world.engine.velocityIterations = 10000;
+        this.cameras.main.startFollow(this.player.sprite);
+        // this.matter.world.engine.positionIterations = 10000;
     }
 
     update(time, delta) {
@@ -33,7 +36,7 @@ class MainScene extends Phaser.Scene {
             layers[layer.name] = map.createDynamicLayer(layer.name, tileset, 0, 0);
             map.setCollisionByProperty({ collides: true });
             scene.matter.world.convertTilemapLayer(layers[layer.name]);
-        });        
+        });
 
         scene.matter.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         scene.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);

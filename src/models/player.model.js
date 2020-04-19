@@ -7,7 +7,7 @@ export class Player extends MovableEntity {
 
     controlsService;
 
-    maxJumps = 2;
+    maxJumps = 3;
     lastJump = 0;
     currentJump = 0;
     weapon;
@@ -16,7 +16,6 @@ export class Player extends MovableEntity {
         super(scene, position, key);
         this.controlsService = new ControlService(scene, controlKeys);
         this.sprite.setFixedRotation(0).setFriction(0).setFrictionAir(0);
-        console.log(this.currentJump);
         this.weapon = new Weapon(scene, { x: 0, y: 0 }, 'weapon', this.collisionCategory, this.sprite);
     }
 

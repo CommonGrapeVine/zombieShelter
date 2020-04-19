@@ -7,6 +7,7 @@ export class MovableEntity extends Entity {
 
     moveLeft = () => { this.sprite.setVelocityX(-this.velocity); }
     moveRight = () => { this.sprite.setVelocityX(this.velocity); }
+    // jump(){ this.sprite.applyForce({x: 0, y: -0.005}); }
     jump(){ this.sprite.setVelocityY(-this.velocity * 2); }
 
     stop = () => { this.sprite.setVelocityX(0); }

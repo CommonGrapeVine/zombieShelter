@@ -18,7 +18,6 @@ export class Entity {
         this.position = position;
         this.sprite = this.createMatterSprite(key);
         this.collisionCategory = collisionCategory;
-        console.log(this.sensors);
     }
 
     createMatterSprite(key) {
@@ -39,7 +38,7 @@ export class Entity {
             // restitution: 0.05,
         });
 
-        sprite.setExistingBody(compoundBody);
+        sprite.setExistingBody(compoundBody).setPosition(this.position.x, this.position.y);
 
         Object.keys(this.sensors).forEach(key => {
             this.sensors[key].touching = 0;
@@ -61,27 +60,6 @@ export class Entity {
             objectA: this.sensors.bottom,
             callback: () => { this.currentJump = 0 }
         });
-
-        // this.scene.matterCollision.addOnCollideStart({
-        //     objectA: this.sensors.left,
-        //     callback: () => { this.sensors.left.touching = true }
-        // });
-
-        // this.scene.matterCollision.addOnCollideEnd({
-        //     objectA: this.sensors.left,
-        //     callback: () => { this.sensors.left.touching = false }
-        // });
-
-        // this.scene.matterCollision.addOnCollideStart({
-        //     objectA: this.sensors.right,
-        //     callback: () => { this.sensors.right.touching = true }
-        // });
-
-        // this.scene.matterCollision.addOnCollideEnd({
-        //     objectA: this.sensors.right,
-        //     callback: () => { this.sensors.right.touching = false }
-        // });
-
 
         return sprite;
     }
