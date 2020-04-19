@@ -23,7 +23,7 @@ export class Weapon extends MovableEntity {
     const width = sprite.width;
     const height = sprite.height;
 
-    const body = this.scene.matter.bodies.rectangle(0, 0, width, height / 2);
+    const body = this.scene.matter.bodies.rectangle(0, 0, width, height);
     this.fireLocation = this.scene.matter.bodies.rectangle(width - 5, 0, 5, 5);
 
     var compoundBody = this.scene.matter.body.create({

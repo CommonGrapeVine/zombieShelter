@@ -27,13 +27,15 @@ export class Entity {
         const height = sprite.height;
 
         const body = this.scene.matter.bodies.rectangle(0, 0, width, height);
-        this.sensors.bottom = this.scene.matter.bodies.rectangle(0, 6, width - 5, 5);
-        this.sensors.left = this.scene.matter.bodies.rectangle(5, 0, 5, height - 5);
-        this.sensors.up = this.scene.matter.bodies.rectangle(5, 0, 5, height - 5);
-        this.sensors.right = this.scene.matter.bodies.rectangle(-5, 0, 5, height - 5);
+        this.sensors.bottom = this.scene.matter.bodies.rectangle(0, 5, width - .5, 5);
+        this.sensors.up = this.scene.matter.bodies.rectangle(5, 0, 5, height - .5);
+
+        this.sensors.left = this.scene.matter.bodies.rectangle(-5, 0, 5, height - 5);
+        this.sensors.right = this.scene.matter.bodies.rectangle(5, 0, 5, height - 5);
 
         var compoundBody = this.scene.matter.body.create({
             parts: [body, this.sensors.bottom, this.sensors.left, this.sensors.right],
+            restitution: 0.1,
         });
 
         sprite.setExistingBody(compoundBody);
@@ -50,22 +52,22 @@ export class Entity {
 
         this.scene.matterCollision.addOnCollideStart({
             objectA: this.sensors.left,
-            callback: ()=>{this.sensors.left.touching = true}
+            callback: () => { this.sensors.left.touching = true }
         });
 
         this.scene.matterCollision.addOnCollideEnd({
             objectA: this.sensors.left,
-            callback: ()=>{this.sensors.left.touching = false}
+            callback: () => { this.sensors.left.touching = false }
         });
 
         this.scene.matterCollision.addOnCollideStart({
             objectA: this.sensors.right,
-            callback: ()=>{this.sensors.right.touching = true}
+            callback: () => { this.sensors.right.touching = true }
         });
 
         this.scene.matterCollision.addOnCollideEnd({
             objectA: this.sensors.right,
-            callback: ()=>{this.sensors.right.touching = false}
+            callback: () => { this.sensors.right.touching = false }
         });
 
 
