@@ -12,8 +12,6 @@ export class Player extends MovableEntity {
     currentJump = 0;
     weapon;
 
-    lastPressed = 0;
-
     constructor(scene, position, key) {
         super(scene, position, key);
         this.controlsService = new ControlService(scene, controlKeys);
@@ -35,8 +33,7 @@ export class Player extends MovableEntity {
     jump(time) {
         if (this.canJump(time)) {
             super.jump();
-            this.lastPressed = this.controlsService.controls.up.timeDown;
-            this.lastJump = time;
+            this.lastJump = this.controlsService.controls.up.timeDown;
             this.currentJump++;
         }
     }
@@ -44,6 +41,6 @@ export class Player extends MovableEntity {
     stop = () => { this.sprite.setVelocityX(0); }
 
     canJump = (time) => {
-        return (this.currentJump < this.maxJumps || this.onGround) && this.lastPressed != this.controlsService.controls.up.timeDown
+        return (this.currentJump < this.maxJumps || this.onGround) && this.lastJump != this.controlsService.controls.up.timeDown
     };
 }
