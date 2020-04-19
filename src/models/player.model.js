@@ -16,7 +16,7 @@ export class Player extends MovableEntity {
         super(scene, position, key);
         this.controlsService = new ControlService(scene, controlKeys);
         this.sprite.setFixedRotation(0).setFriction(0).setFrictionAir(0);
-        this.weapon = new Weapon(scene, { x: 0, y: 0 }, 'weapon', this.collisionCategory, this.sprite);
+        // this.weapon = new Weapon(scene, { x: 0, y: 0 }, 'weapon', this.collisionCategory, this.sprite);
     }
 
     update = (time, delta) => {
@@ -27,7 +27,7 @@ export class Player extends MovableEntity {
         if (!this.controlsService.isKeyDown('left') && !this.controlsService.isKeyDown('right')) this.stop();
 
         this.sprite.body.velocity.y === 0 && (this.currentJump = 0);
-        this.weapon.update();
+        // this.weapon.update();
     }
 
     jump(time) {
@@ -41,6 +41,6 @@ export class Player extends MovableEntity {
     stop = () => { this.sprite.setVelocityX(0); }
 
     canJump = (time) => {
-        return (this.currentJump < this.maxJumps || this.onGround) && this.lastJump != this.controlsService.controls.up.timeDown
+        return (this.currentJump < this.maxJumps || this.sensors.bottom.touching) && this.lastJump != this.controlsService.controls.up.timeDown
     };
 }
