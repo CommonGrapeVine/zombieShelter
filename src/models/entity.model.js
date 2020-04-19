@@ -28,15 +28,15 @@ export class Entity {
 
         const body = this.scene.matter.bodies.rectangle(0, 0, width, height);
 
-        this.sensors.bottom = this.scene.matter.bodies.rectangle(0, 9, 5, 5, { isSensor: true });
-        this.sensors.up = this.scene.matter.bodies.rectangle(0, -9, 5, 5, { isSensor: true });
+        this.sensors.bottom = this.scene.matter.bodies.rectangle(0, 9, 1, 1, { isSensor: true });
+        this.sensors.up = this.scene.matter.bodies.rectangle(0, -9, 1, 1, { isSensor: true });
 
-        this.sensors.left = this.scene.matter.bodies.rectangle(-9, 0, 5, 5, { isSensor: true });
-        this.sensors.right = this.scene.matter.bodies.rectangle(9, 0, 5, 5, { isSensor: true });
+        this.sensors.left = this.scene.matter.bodies.rectangle(-9, 0, 1, 1, { isSensor: true });
+        this.sensors.right = this.scene.matter.bodies.rectangle(9, 0, 1, 1, { isSensor: true });
 
         var compoundBody = this.scene.matter.body.create({
             parts: [body, this.sensors.bottom, this.sensors.up, this.sensors.left, this.sensors.right],
-            restitution: 0.05,
+            // restitution: 0.05,
         });
 
         sprite.setExistingBody(compoundBody);
@@ -56,6 +56,11 @@ export class Entity {
                 callback: () => { this.sensors[key].touching-- }
             });
         })
+
+        this.scene.matterCollision.addOnCollideStart({
+            objectA: this.sensors.bottom,
+            callback: () => { this.currentJump = 0 }
+        });
 
         // this.scene.matterCollision.addOnCollideStart({
         //     objectA: this.sensors.left,
