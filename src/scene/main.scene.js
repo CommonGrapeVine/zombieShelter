@@ -16,8 +16,8 @@ class MainScene extends Phaser.Scene {
 
     create() {
         // this.matter.world.setBounds(0, 0, gameSize.width, gameSize.height);
-        this.player = new Player(this, { x: 50, y: 50 }, 'player', 1);
         const map = this.createMap(this);
+        this.player = new Player(this, { x: 50, y: 50 }, 'player', 1);
     }
 
     update(time, delta) {
@@ -25,7 +25,7 @@ class MainScene extends Phaser.Scene {
     }
 
     createMap = (scene) => {
-        const map = scene.make.tilemap({ key: 'map2' });
+        const map = scene.make.tilemap({ key: 'map' });
 
         const tileset = map.addTilesetImage("tile", "tiles");
         const layers = {};
@@ -37,7 +37,7 @@ class MainScene extends Phaser.Scene {
 
         scene.matter.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         scene.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        scene.cameras.main.startFollow(this.player.sprite);
+        // scene.cameras.main.startFollow(this.player.sprite);
         scene.cameras.main.setBackgroundColor('#345678');
 
         return map;

@@ -6,6 +6,7 @@ export class ControlService {
     constructor(scene, keyboardKeys) {
         Object.keys(keyboardKeys).forEach(key => {
             this.controls[key] = scene.input.keyboard.addKey(keyboardKeys[key]);
+            console.log(key, this.controls[key]);
         })
     }
 
