@@ -10,7 +10,7 @@ export class MovableEntity extends Entity {
     // jump(){ this.sprite.applyForce({x: 0, y: -0.005}); }
     jump(){ this.sprite.setVelocityY(-this.velocity * 2); }
 
-    stop = () => { this.sprite.setVelocityX(0); }
+    stop = () => {  }
 
     canJump = () => this.currentJump < this.maxJumps || this.sprite.body.velocity.y === 0;
 }

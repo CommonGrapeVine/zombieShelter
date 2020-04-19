@@ -48,48 +48,6 @@ export class Weapon extends MovableEntity {
   }
 
   shootBullet = (pointer) => {
-    // const bullet = new Unit(this.scene, 'bullet', this.bulletCollisionCategory);
-    // bullet.create({ x: this.weaponBody.position.x, y: this.weaponBody.position.y });
-    // bullet.sprite.setAngle(this.sprite.angle);
-    // bullet.sprite.body.label = 'bullet';
-    // bullet.sprite.setBounce(1);
-    // const vectorVeocity = getVelocity(
-    //     getPosition(bullet.sprite),
-    //     getPosition(this.sprite),
-    //     10);
-    // (bullet.sprite.setFriction(0, 0))
-    //     .setVelocity(vectorVeocity.y, vectorVeocity.x);
-    // this.scene.matterCollision.addOnCollideStart({
-    //     objectA: bullet.sprite,
-    //     callback: (eventData) => {
-    //         const { bodyA, bodyB } = eventData;
-    //         var bodyBounce;
-    //         if (bodyA.label === 'wall')
-    //             bodyBounce = bodyB;
-    //         else
-    //             bodyBounce = bodyA;
-    //         if (bodyA.label === 'wall' || bodyB.label === 'wall') {
-    //             bodyBounce.bounces === undefined && (() => {
-    //                 console.log('bounces');
-    //                 bodyBounce.bounces = 1;
-    //             })()
-    //             if (this.maxBounces === bodyBounce.bounces) {
-    //                 const bulletHitAnimation = new Unit(this.scene, 'bulletHit');
-    //                 bulletHitAnimation.create({ x: bodyBounce.position.x, y: bodyBounce.position.y });
-    //                 loadAnimations(this.scene, bulletHitAnimation.sprite, bulletAnimation);
-    //                 playAnimation(bulletHitAnimation.sprite, 'bullet_hit');
-    //                 bullet.sprite.destroy();
-    //                 bulletHitAnimation.sprite.setCollisionGroup(-1);
-    //                 bulletHitAnimation.sprite.setCollisionCategory(0);
-    //             }
-    //             bodyBounce.bounces > 0 && (() => {
-    //                 console.log('bounces2');
-    //                 bodyBounce.bounces++;
-    //             })()
-    //             // bulletHitAnimation.sprite.destroy();
-    //         }
-    //     },
-    //     context: this // Context to apply to the callback function
-    // });
+    const bullet = new Bullet(this.scene, this.fireLocation.position, pointer.position ,'bullet', this.bulletCollisionCategory);
   };
 }
