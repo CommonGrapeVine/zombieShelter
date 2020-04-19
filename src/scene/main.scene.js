@@ -25,7 +25,7 @@ class MainScene extends Phaser.Scene {
     }
 
     createMap = (scene) => {
-        const map = scene.make.tilemap({ key: 'map' });
+        const map = scene.make.tilemap({ key: 'map2' });
 
         const tileset = map.addTilesetImage("tile", "tiles");
         const layers = {};
