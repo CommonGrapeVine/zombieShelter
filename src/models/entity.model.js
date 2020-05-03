@@ -21,7 +21,7 @@ export class Entity {
     }
 
     createMatterSprite(key) {
-        const sprite = this.scene.matter.add.sprite(this.position.x, this.position.y, key)
+        const sprite = this.scene.matter.add.sprite(this.position.x, this.position.y, )
         const width = sprite.width;
         const height = sprite.height;
 
